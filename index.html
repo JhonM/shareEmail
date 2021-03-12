@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Multiple Email Form</title>
+  </head>
+  <body>
+    <div id="email"></div>
+    <div id="share"></div>
+
+    <script src="dist/multiple-email-form.min.js"></script>
+    <script>
+      const email = document.getElementById("email");
+      var form = shareForm.setup(email, { name: "jhon", kind: "human" });
+      console.log(form);
+      console.log(form.age(), "age");
+
+      //var share = document.getElementById("share");
+    </script>
+  </body>
+</html>
