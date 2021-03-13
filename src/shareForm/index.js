@@ -1,4 +1,4 @@
-import emailLabel from "../components/email-label";
+import { emailLabel } from '../components/email-label';
 // export { default as emailContainer } from "./components/email-container";
 
 export default class shareForm {
@@ -11,9 +11,9 @@ export default class shareForm {
 
   build() {
     this.selector.appendChild(
-      emailLabel({ email: "Jhon Majoor", action: () => alert("Clicked") })
+      emailLabel({ email: 'Jhon Majoor', action: () => alert('Clicked') })
     );
-    console.log("build..");
+    console.log('build..');
   }
 
   age() {
