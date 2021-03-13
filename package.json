@@ -5,7 +5,9 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
+    "test:watch": "mocha --colors -w --inspect",
+    "test:browser": "mocha-headless-chrome -f test/index.html",
     "build": "rollup -c",
     "dev": "rollup -c -w"
   },
@@ -15,8 +17,15 @@
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
+    "@babel/register": "^7.13.8",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
+    "chai": "^4.3.4",
+    "karma": "^6.2.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.1",
+    "mocha": "^8.3.2",
     "rollup": "^2.41.1",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-scss": "^2.6.1",
@@ -24,5 +33,6 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {}
 }

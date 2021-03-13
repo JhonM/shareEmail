@@ -4,24 +4,24 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const labelTemplate = ({ email, invalid, action }) =>
   `
-    <label class="emailLabel ${invalid ? "red" : "blue"}" tabindex="0">
+    <label class="emailLabel ${invalid ? 'red' : 'blue'}" tabindex="0">
       ${email} <span class="close" tabindex="0">X</span>
     </label>
   `;
 
-function emailLabel(props) {
-  const template = document.createElement("template");
+var emailLabel = (props) => {
+  const template = document.createElement('template');
   template.innerHTML = labelTemplate(props);
 
   const label = template.content;
 
   if (props.action) {
-    label.querySelector(".close").addEventListener("click", (e) => {
+    label.querySelector('.close').addEventListener('click', (e) => {
       props.action(e.srcElement);
     });
   }
   return label;
-}
+};
 
 // export { default as emailContainer } from "./components/email-container";
 
@@ -35,9 +35,9 @@ class shareForm {
 
   build() {
     this.selector.appendChild(
-      emailLabel({ email: "Jhon Majoor", action: () => alert("Clicked") })
+      emailLabel({ email: 'Jhon Majoor', action: () => alert('Clicked') })
     );
-    console.log("build..");
+    console.log('build..');
   }
 
   age() {
