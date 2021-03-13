@@ -1,7 +1,7 @@
 const labelTemplate = ({ email, invalid, action }) =>
   `
-    <label class="emailLabel ${invalid ? "red" : "blue"}">
-      ${email} <span class="close">X</span>
+    <label class="emailLabel ${invalid ? "red" : "blue"}" tabindex="0">
+      ${email} <span class="close" tabindex="0">X</span>
     </label>
   `;
 

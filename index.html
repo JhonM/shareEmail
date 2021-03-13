@@ -3,10 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <title>Multiple Email Form</title>
+    <link rel="stylesheet" href="dist/bundle.css" />
   </head>
   <body>
-    <div id="email"></div>
-    <div id="share"></div>
+    <div class="container">
+      <div class="wrapper">
+        <div class="share-box" tabindex="0">
+          <div class="share-box-body">
+            <div class="share-box-heading" tabindex="0">
+              Share <strong>Board name</strong> with others
+            </div>
+            <div class="share-box-content">
+              <div id="email"></div>
+            </div>
+          </div>
+          <div class="share-box-footer">
+            <div class="share-box-button-group">
+              <button class="add-email">Add Email</button>
+              <button class="get-count">Get emails count</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="share"></div>
+      </div>
+    </div>
 
     <script src="dist/multiple-email-form.min.js"></script>
     <script>

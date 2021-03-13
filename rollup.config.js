@@ -1,6 +1,8 @@
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 import babel from "@rollup/plugin-babel";
+import scss from "rollup-plugin-scss";
+import sass from "rollup-plugin-sass";
 import pkg from "./package.json";
 
 const input = ["src/index.js"];
@@ -42,6 +44,19 @@ export default [
         exports: "named",
         sourcemap: true,
       },
+    ],
+  },
+  {
+    input: "src/styles/input.js",
+    output: {
+      file: "dist/output.js",
+      format: "esm",
+    },
+    plugins: [
+      scss({
+        output: true,
+        output: "dist/bundle.css",
+      }),
     ],
   },
 ];
