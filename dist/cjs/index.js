@@ -2,6 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
+
 const labelTemplate$1 = ({ email }) =>
   `
     <label data-share-form="share-box-email-label">
@@ -10,16 +15,15 @@ const labelTemplate$1 = ({ email }) =>
   `;
 
 var emailLabel = (props) => {
-  const { valid } = props;
   const template = document.createElement('div');
   template.dataset.shareForm = 'share-box-email-label-container';
   template.tabIndex = 0;
-  template.classList.add(valid ? 'valid' : 'invalid');
+  template.classList.add(validateEmail(props.email) ? 'valid' : 'invalid');
   template.innerHTML = labelTemplate$1(props);
   template
     .querySelector('[data-share-form="share-box-email-close"]')
     .addEventListener('click', (e) => {
-      props.action(e);
+      props.action(template);
     });
 
   return template;
@@ -27,15 +31,56 @@ var emailLabel = (props) => {
 
 const labelTemplate = ({ placeholder }) =>
   `
-    <input type="email" placeholder="${placeholder}" />
+    <input type="email" placeholder="${placeholder}" multiple>
   `;
+
+const onBlur = (e, action) => {
+  fireAction(e, action);
+};
+
+const onKeyDown = (e, action) => {
+  fireAction(e, action);
+};
+
+const onPaste = (e, action) => {
+  const paste = (e.clipboardData || window.clipboardData).getData('text');
+  const pasteArr = paste.split(',');
+  pasteArr.forEach((email) => action(email));
+};
+
+const fireAction = (e, action) => {
+  const newEmail = e?.target?.value;
+  if (newEmail === '') return;
+  action(newEmail);
+};
 
 var emailInput = (props) => {
   const template = document.createElement('div');
   template.dataset.shareForm = 'share-box-input-container';
   template.innerHTML = labelTemplate(props);
-  template.querySelector('input').addEventListener('blur', (e) => {
-    props.onBlur(e);
+
+  const input = template.querySelector('input');
+
+  // fire action on blur
+  input.addEventListener('blur', (e) => {
+    input.value = '';
+    onBlur(e, props.action);
+  });
+
+  // fire action when keypress is Comma or Enter
+  input.addEventListener('keypress', (e) => {
+    if (['Comma', 'Enter'].includes(e.code)) {
+      onKeyDown(e, props.action);
+      input.focus();
+      input.removeEventListener('blur', onBlur);
+    }
+  });
+
+  // fire action when
+  input.addEventListener('paste', (e) => {
+    onPaste(e, props.action);
+    input.focus();
+    input.removeEventListener('blur', onBlur);
   });
 
   return template;
@@ -44,6 +89,7 @@ var emailInput = (props) => {
 class shareForm {
   constructor(selector, props) {
     this.selector = selector;
+    this.list = document.createElement('span');
     this.props = props;
     this.emails = props?.emails || [];
 
@@ -55,56 +101,47 @@ class shareForm {
   }
 
   buildList() {
-    while (this.selector.firstChild) {
-      this.selector.removeChild(this.selector.firstChild);
-    }
     this.emails.forEach((email) => {
-      this.selector.appendChild(
-        emailLabel({
-          email,
-          action: () => this.removeEmail(email),
-          valid: false,
-        })
-      );
+      const template = emailLabel({
+        email,
+        action: () => this.removeEmail(template),
+      });
+      this.list.appendChild(template);
+      this.selector.appendChild(this.list);
     });
+
     this.selector.appendChild(
       emailInput({
         placeholder:
           this.emails.length > 0 ? 'add more people...' : 'add a person...',
-        onBlur: (e) => this.onBlur(e),
+        action: (e) => this.addEmail(e),
       })
     );
   }
 
   addEmail(email) {
-    this.emails.push(email);
-    this.build(this.emails);
+    this.appendChildEmail(email);
   }
 
   randomEmail() {
-    this.emails.push('push@push.it');
-
-    this.build(this.emails);
+    const email = 'push@push.it';
+    this.appendChildEmail(email);
   }
 
   removeEmail(email) {
-    const index = this.emails.indexOf(email);
-    if (index !== -1) {
-      this.emails.splice(index, 1);
-    }
+    this.list.removeChild(email);
+  }
 
-    this.buildList(this.emails);
+  appendChildEmail(email) {
+    const template = emailLabel({
+      email,
+      action: () => this.removeEmail(template),
+    });
+    this.list.appendChild(template);
   }
 
   emailsCount() {
     alert(`Current email count is: ${this.emails.length}`);
-  }
-
-  onBlur(e) {
-    console.log(e?.target?.value, 'onBlur event');
-    const newEmail = e?.target?.value;
-    if (newEmail === '') return;
-    this.addEmail(newEmail);
   }
 }
 
