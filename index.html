@@ -7,36 +7,59 @@
   </head>
   <body>
     <div class="container">
-      <div class="wrapper">
-        <div class="share-box" tabindex="0">
-          <div class="share-box-body">
-            <div class="share-box-heading" tabindex="0">
-              Share <strong>Board name</strong> with others
-            </div>
-            <div class="share-box-content">
-              <div id="email"></div>
-            </div>
+      <div class="share-box first" tabindex="0">
+        <div class="share-box-body">
+          <div class="share-box-heading" tabindex="0">
+            Share <strong>Board name</strong> with others
           </div>
-          <div class="share-box-footer">
-            <div class="share-box-button-group">
-              <button class="add-email">Add Email</button>
-              <button class="get-count">Get emails count</button>
-            </div>
+          <div class="share-box-content">
+            <div id="email"></div>
           </div>
         </div>
+        <div class="share-box-footer">
+          <div class="share-box-button-group">
+            <button class="add-email">Add Email</button>
+            <button class="get-count">Get emails count</button>
+          </div>
+        </div>
+      </div>
 
-        <div id="share"></div>
+      <!--
+      <div class="share-box second" tabindex="0">
+        <div class="share-box-body">
+          <div class="share-box-heading" tabindex="0">
+            Share <strong>Board name</strong> with others
+          </div>
+          <div class="share-box-content">
+            <div id="share"></div>
+          </div>
+        </div>
+        <div class="share-box-footer">
+          <div class="share-box-button-group">
+            <button class="add-email">Add Email</button>
+            <button class="get-count">Get emails count</button>
+          </div>
+        </div>
       </div>
     </div>
+      -->
 
     <script src="dist/multiple-email-form.min.js"></script>
     <script>
-      const email = document.getElementById("email");
-      var form = shareForm.setup(email, { name: "jhon", kind: "human" });
-      console.log(form);
-      console.log(form.age(), "age");
+      const emailId = document.getElementById('email');
+      const shareId = document.getElementById('share');
 
-      //var share = document.getElementById("share");
+      const form = shareForm.setup(emailId, {
+        emails: ['john@doe.com', 'jane@doe.com'],
+      });
+      const add = document.querySelector('.first .add-email');
+      add.onclick = function () {
+        form.randomEmail();
+      };
+      const count = document.querySelector('.first .get-count');
+      count.onclick = function () {
+        form.emailsCount();
+      };
     </script>
   </body>
 </html>

@@ -5,17 +5,9 @@ body, html {
   height: 100%;
 }
 
-
 .container {
    position: relative;
-
-  .wrapper {
-     position: absolute;
-     left: 0;
-     right: 0;
-     margin-left: auto;
-     margin-right: auto;
-  }
+   padding: 32px;
 }
 
 .share-box {
@@ -24,11 +16,12 @@ body, html {
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 56px;
 
   .share-box-body {
-    padding: 32px 50px;
+    padding: 32px 50px 24px;
     background: #F8F8F7;
-    border-radius: 8px 0px;
+    border-radius: 0px 8px;
   }
 
   .share-box-heading {
@@ -38,15 +31,66 @@ body, html {
   .share-box-content {
     padding: 8px;
     min-height: 96px;
+    max-height: 96px;
+    overflow-y: auto;
     width: 100%;
     background: #FFFFFF;
     border: 1px solid #C3C2CF;
     box-sizing: border-box;
     border-radius: 4px;
+
+    .share-box-input-container {
+      display: inline-block;
+
+      input {
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 24px;
+        color: #C3C2CF;
+        border: none;
+      }
+    }
   }
 
   .share-box-footer {
     padding: 24px 50px 32px 50px;
+  }
+
+  .share-box-email-label-container {
+    display: inline-block;
+    font-size: 14px;
+
+    &.valid {
+      background: rgba(102, 153, 255, 0.2);
+      border-radius: 100px;
+      padding: 0 10px;
+    }
+
+    &.invalid {
+      padding: 0 4px;
+
+      .share-box-email-label {
+        border-bottom-style: dotted;
+        border-bottom-width: 1px;
+        border-bottom-color: red;
+      }
+    }
+
+
+    .share-box-email-label {
+      top: calc(50% - 24px/2 - 18px);
+
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 24px;
+      /* identical to box height, or 171% */
+      text-align: right;
+      color: #050038;
+    }
   }
 }
 

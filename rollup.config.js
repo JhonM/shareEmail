@@ -1,11 +1,10 @@
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
-import babel from "@rollup/plugin-babel";
-import scss from "rollup-plugin-scss";
-import sass from "rollup-plugin-sass";
-import pkg from "./package.json";
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
+import babel from '@rollup/plugin-babel';
+import sass from 'rollup-plugin-sass';
+import pkg from './package.json';
 
-const input = ["src/index.js"];
+const input = ['src/index.js'];
 
 export default [
   {
@@ -14,16 +13,16 @@ export default [
     plugins: [
       nodeResolve(),
       babel({
-        babelHelpers: "bundled",
+        babelHelpers: 'bundled',
       }),
       terser(),
     ],
     output: {
       file: `dist/${pkg.name}.min.js`,
-      format: "umd",
-      name: "shareForm",
+      format: 'umd',
+      name: 'shareForm',
       esModule: false,
-      exports: "named",
+      exports: 'named',
       sourcemap: true,
     },
   },
@@ -33,29 +32,29 @@ export default [
     plugins: [nodeResolve()],
     output: [
       {
-        dir: "dist/esm",
-        format: "esm",
-        exports: "named",
+        dir: 'dist/esm',
+        format: 'esm',
+        exports: 'named',
         sourcemap: true,
       },
       {
-        dir: "dist/cjs",
-        format: "cjs",
-        exports: "named",
+        dir: 'dist/cjs',
+        format: 'cjs',
+        exports: 'named',
         sourcemap: true,
       },
     ],
   },
   {
-    input: "src/styles/input.js",
+    input: 'src/styles/input.js',
     output: {
-      file: "dist/output.js",
-      format: "esm",
+      file: 'dist/output.js',
+      format: 'esm',
     },
     plugins: [
-      scss({
+      sass({
         output: true,
-        output: "dist/bundle.css",
+        output: 'dist/bundle.css',
       }),
     ],
   },

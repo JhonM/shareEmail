@@ -1,20 +1,22 @@
-const labelTemplate = ({ email, invalid, action }) =>
+const labelTemplate = ({ email }) =>
   `
-    <label class="emailLabel ${invalid ? 'red' : 'blue'}" tabindex="0">
-      ${email} <span class="close" tabindex="0">X</span>
+    <label class="share-box-email-label">
+      ${email} <span class="share-box-email-close" tabindex="0">x</span>
     </label>
   `;
 
 export default (props) => {
-  const template = document.createElement('template');
+  const { valid } = props;
+  const template = document.createElement('div');
+  template.className = 'share-box-email-label-container';
+  template.tabIndex = 0;
+  template.classList.add(valid ? 'valid' : 'invalid');
   template.innerHTML = labelTemplate(props);
-
-  const label = template.content;
-
-  if (props.action) {
-    label.querySelector('.close').addEventListener('click', (e) => {
-      props.action(e.srcElement);
+  template
+    .querySelector('.share-box-email-close')
+    .addEventListener('click', (e) => {
+      props.action(e);
     });
-  }
-  return label;
+
+  return template;
 };
