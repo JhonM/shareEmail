@@ -15,7 +15,9 @@ export default class shareForm {
   }
 
   buildList() {
-    this.selector.innerHTML = '';
+    while (this.selector.firstChild) {
+      this.selector.removeChild(this.selector.firstChild);
+    }
     this.emails.forEach((email) => {
       this.selector.appendChild(
         emailLabel({

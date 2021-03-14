@@ -1,19 +1,19 @@
 const labelTemplate$1 = ({ email }) =>
   `
-    <label class="share-box-email-label">
-      ${email} <span class="share-box-email-close" tabindex="0">x</span>
+    <label data-share-form="share-box-email-label">
+      ${email} <span data-share-form="share-box-email-close" tabindex="0">x</span>
     </label>
   `;
 
 var emailLabel = (props) => {
   const { valid } = props;
   const template = document.createElement('div');
-  template.className = 'share-box-email-label-container';
+  template.dataset.shareForm = 'share-box-email-label-container';
   template.tabIndex = 0;
   template.classList.add(valid ? 'valid' : 'invalid');
   template.innerHTML = labelTemplate$1(props);
   template
-    .querySelector('.share-box-email-close')
+    .querySelector('[data-share-form="share-box-email-close"]')
     .addEventListener('click', (e) => {
       props.action(e);
     });
@@ -28,7 +28,7 @@ const labelTemplate = ({ placeholder }) =>
 
 var emailInput = (props) => {
   const template = document.createElement('div');
-  template.className = 'share-box-input-container';
+  template.dataset.shareForm = 'share-box-input-container';
   template.innerHTML = labelTemplate(props);
   template.querySelector('input').addEventListener('blur', (e) => {
     props.onBlur(e);
@@ -51,7 +51,9 @@ class shareForm {
   }
 
   buildList() {
-    this.selector.innerHTML = '';
+    while (this.selector.firstChild) {
+      this.selector.removeChild(this.selector.firstChild);
+    }
     this.emails.forEach((email) => {
       this.selector.appendChild(
         emailLabel({

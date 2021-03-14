@@ -5,7 +5,7 @@ const labelTemplate = ({ placeholder }) =>
 
 export default (props) => {
   const template = document.createElement('div');
-  template.className = 'share-box-input-container';
+  template.dataset.shareForm = 'share-box-input-container';
   template.innerHTML = labelTemplate(props);
   template.querySelector('input').addEventListener('blur', (e) => {
     props.onBlur(e);
