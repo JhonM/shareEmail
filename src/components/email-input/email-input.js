@@ -36,19 +36,29 @@ export default (props) => {
   });
 
   // fire action when keypress is Comma or Enter
-  input.addEventListener('keypress', (e) => {
-    if (['Comma', 'Enter'].includes(e.code)) {
+  input.addEventListener('keydown', (e) => {
+    if (
+      e.keyCode === 188 ||
+      e.keyCode === 13 ||
+      ['Comma', 'Enter'].includes(e.code)
+    ) {
       onKeyDown(e, props.action);
-      input.focus();
+
+      e.target.value = '';
       input.removeEventListener('blur', onBlur);
     }
   });
 
-  // fire action when
+  // make sure to strip the comma when when typing
+  input.addEventListener('input', function (e) {
+    const removeComma = e.target.value.replace(/,/g, '');
+    e.target.value = removeComma;
+  });
+
+  // fire action when user paste a string with emails
   input.addEventListener('paste', (e) => {
     onPaste(e, props.action);
-    input.focus();
-    input.removeEventListener('blur', onBlur);
+    e.target.blur();
   });
 
   return template;
