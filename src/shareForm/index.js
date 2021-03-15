@@ -27,8 +27,7 @@ export default class shareForm {
 
     this.selector.appendChild(
       emailInput({
-        placeholder:
-          this.emails.length > 0 ? 'add more people...' : 'add a person...',
+        placeholder: 'add more people...',
         action: (e) => this.addEmail(e),
       })
     );

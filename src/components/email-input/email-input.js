@@ -33,6 +33,7 @@ export default (props) => {
   // fire action on blur
   input.addEventListener('blur', (e) => {
     onBlur(e, props.action);
+    e.target.value = '';
   });
 
   // fire action when keypress is Comma or Enter
