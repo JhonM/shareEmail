@@ -8,10 +8,6 @@ export default class shareForm {
     this.props = props;
     this.emails = props?.emails || [];
 
-    this.build(this.emails);
-  }
-
-  build() {
     this.buildList(this.emails);
   }
 
@@ -22,8 +18,9 @@ export default class shareForm {
         action: () => this.removeEmail(template),
       });
       this.list.appendChild(template);
-      this.selector.appendChild(this.list);
     });
+
+    this.selector.appendChild(this.list);
 
     this.selector.appendChild(
       emailInput({
