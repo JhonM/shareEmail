@@ -32,7 +32,6 @@ export default (props) => {
 
   // fire action on blur
   input.addEventListener('blur', (e) => {
-    input.value = '';
     onBlur(e, props.action);
   });
 

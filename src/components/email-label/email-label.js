@@ -1,3 +1,5 @@
+import { Remove } from '../../../dist/assets/bundle';
+
 const validateEmail = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
@@ -6,7 +8,8 @@ const validateEmail = (email) => {
 const labelTemplate = ({ email }) =>
   `
     <label data-share-form="share-box-email-label">
-      ${email} <span data-share-form="share-box-email-close" tabindex="0">x</span>
+      <span>${email}<span>
+      <span data-share-form="share-box-email-close" tabindex="0"><img src=${Remove}></span>
     </label>
   `;
 

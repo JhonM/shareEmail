@@ -39,8 +39,20 @@ export default class shareForm {
   }
 
   randomEmail() {
-    const email = 'push@push.it';
-    this.appendChildEmail(email);
+    const emailArray = [
+      'push@push.it',
+      'peter@doe.com',
+      'linda@doe.ru',
+      'lisa.pater@doe.com',
+      'floor@longurl.it',
+      'jan@longurl.com',
+      'robert@longurl.ru',
+      'britt.pater@longurl.com',
+    ];
+    const randomEmail =
+      emailArray[Math.floor(Math.random() * emailArray.length)];
+
+    this.appendChildEmail(randomEmail);
   }
 
   removeEmail(email) {
@@ -56,6 +68,9 @@ export default class shareForm {
   }
 
   emailsCount() {
-    alert(`Current email count is: ${this.emails.length}`);
+    const currentLength = this.list.querySelectorAll(
+      '[data-share-form="share-box-email-label-container"]'
+    ).length;
+    alert(`Current email count is: ${currentLength}`);
   }
 }
