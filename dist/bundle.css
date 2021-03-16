@@ -73,6 +73,10 @@ h3 {
   margin-left: 16px;
 }
 
+.standalone {
+  max-width: 540px;
+}
+
 [data-share-form=share-box-email-label-container] {
   display: inline-block;
   font-size: 14px;

@@ -81,6 +81,10 @@ h3 {
   }
 }
 
+.standalone {
+  max-width: 540px;
+}
+
 ///////// shareForm styling /////////
 [data-share-form="share-box-email-label-container"] {
   display: inline-block;
