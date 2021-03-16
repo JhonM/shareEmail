@@ -19,11 +19,20 @@ export default (props) => {
   template.tabIndex = 0;
   template.classList.add(validateEmail(props.email) ? 'valid' : 'invalid');
   template.innerHTML = labelTemplate(props);
+
+  // remove email label on click
   template
     .querySelector('[data-share-form="share-box-email-close"]')
     .addEventListener('click', (e) => {
       props.action(template);
     });
+
+  // remove email label on enter
+  template.addEventListener('keydown', (e) => {
+    if (e.keyCode === 13 || e.code === 'Enter') {
+      props.action(template);
+    }
+  });
 
   return template;
 };
