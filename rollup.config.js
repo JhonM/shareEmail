@@ -2,13 +2,13 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import babel from '@rollup/plugin-babel';
 import sass from 'rollup-plugin-sass';
+import image from 'rollup-plugin-img';
 import pkg from './package.json';
 
 const input = ['src/index.js'];
 
 export default [
   {
-    // UMD
     input,
     plugins: [
       nodeResolve(),
@@ -26,7 +26,6 @@ export default [
       sourcemap: true,
     },
   },
-  // ESM and CJS
   {
     input,
     plugins: [nodeResolve()],
@@ -55,6 +54,17 @@ export default [
       sass({
         output: true,
         output: 'dist/bundle.css',
+      }),
+    ],
+  },
+  {
+    input: 'src/assets/index.js',
+    output: {
+      file: 'dist/assets/bundle.js',
+    },
+    plugins: [
+      image({
+        limit: 10000,
       }),
     ],
   },

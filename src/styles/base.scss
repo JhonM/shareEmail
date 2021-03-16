@@ -1,8 +1,17 @@
+@import "https://fonts.googleapis.com/css?family=Open Sans";
+
 body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-family: Open Sans;
 }
 
 .container {
@@ -26,11 +35,20 @@ body, html {
 
   .share-box-heading {
     padding-bottom: 24px;
+    color: #050038;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 27px;
+
+    strong {
+      font-weight: 700;
+    }
   }
 
   .share-box-content {
     padding: 8px;
-    min-height: 96px;
     max-height: 96px;
     overflow-y: auto;
     width: 100%;
@@ -38,8 +56,6 @@ body, html {
     border: 1px solid #C3C2CF;
     box-sizing: border-box;
     border-radius: 4px;
-
-
   }
 
   .share-box-footer {
@@ -50,6 +66,7 @@ body, html {
     color: #fff;
     cursor: pointer;
     padding: 8px 16px;
+    font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -62,6 +79,10 @@ body, html {
       margin-left: 16px;
     }
   }
+}
+
+.standalone {
+  max-width: 540px;
 }
 
 ///////// shareForm styling /////////
@@ -97,6 +118,10 @@ body, html {
     line-height: 24px;
     text-align: right;
     color: #050038;
+
+    [data-share-form="share-box-email-close"] {
+      margin-left: 6px;
+    }
   }
 }
 

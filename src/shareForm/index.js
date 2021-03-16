@@ -4,66 +4,69 @@ import { emailInput } from '../components/email-input';
 export default class shareForm {
   constructor(selector, props) {
     this.selector = selector;
+    this.list = document.createElement('span');
     this.props = props;
     this.emails = props?.emails || [];
 
-    this.build(this.emails);
-  }
-
-  build() {
     this.buildList(this.emails);
   }
 
   buildList() {
-    while (this.selector.firstChild) {
-      this.selector.removeChild(this.selector.firstChild);
-    }
     this.emails.forEach((email) => {
-      this.selector.appendChild(
-        emailLabel({
-          email,
-          action: () => this.removeEmail(email),
-          valid: false,
-        })
-      );
+      const template = emailLabel({
+        email,
+        action: () => this.removeEmail(template),
+      });
+      this.list.appendChild(template);
     });
+
+    this.selector.appendChild(this.list);
+
     this.selector.appendChild(
       emailInput({
-        placeholder:
-          this.emails.length > 0 ? 'add more people...' : 'add a person...',
-        onBlur: (e) => this.onBlur(e),
+        placeholder: 'add more people...',
+        action: (e) => this.addEmail(e),
       })
     );
   }
 
   addEmail(email) {
-    this.emails.push(email);
-    this.build(this.emails);
+    this.appendChildEmail(email);
   }
 
   randomEmail() {
-    this.emails.push('push@push.it');
+    const emailArray = [
+      'push@push.it',
+      'peter@doe.com',
+      'linda@doe.ru',
+      'lisa.pater@doe.com',
+      'floor@longurl.it',
+      'jan@longurl.com',
+      'robert@longurl.ru',
+      'britt.pater@longurl.com',
+    ];
+    const randomEmail =
+      emailArray[Math.floor(Math.random() * emailArray.length)];
 
-    this.build(this.emails);
+    this.appendChildEmail(randomEmail);
   }
 
   removeEmail(email) {
-    const index = this.emails.indexOf(email);
-    if (index !== -1) {
-      this.emails.splice(index, 1);
-    }
+    this.list.removeChild(email);
+  }
 
-    this.buildList(this.emails);
+  appendChildEmail(email) {
+    const template = emailLabel({
+      email,
+      action: () => this.removeEmail(template),
+    });
+    this.list.appendChild(template);
   }
 
   emailsCount() {
-    alert(`Current email count is: ${this.emails.length}`);
-  }
-
-  onBlur(e) {
-    console.log(e?.target?.value, 'onBlur event');
-    const newEmail = e?.target?.value;
-    if (newEmail === '') return;
-    this.addEmail(newEmail);
+    const currentLength = this.list.querySelectorAll(
+      '[data-share-form="share-box-email-label-container"]'
+    ).length;
+    alert(`Current email count is: ${currentLength}`);
   }
 }

@@ -7,6 +7,7 @@
   </head>
   <body>
     <div class="container">
+      <h3>With email defaults</h3>
       <div class="share-box first" tabindex="0">
         <div class="share-box-body">
           <div class="share-box-heading" tabindex="0">
@@ -24,7 +25,7 @@
         </div>
       </div>
 
-      <!--
+      <h3>Without default</h3>
       <div class="share-box second" tabindex="0">
         <div class="share-box-body">
           <div class="share-box-heading" tabindex="0">
@@ -41,25 +42,39 @@
           </div>
         </div>
       </div>
+
+      <h3>Standalone component</h3>
+      <div id="standalone" class="standalone"><div>
     </div>
-      -->
 
     <script src="dist/multiple-email-form.min.js"></script>
     <script>
       const emailId = document.getElementById('email');
-      const shareId = document.getElementById('share');
-
-      const form = shareForm.setup(emailId, {
+      const formEmail = shareForm.setup(emailId, {
         emails: ['john@doe.com', 'jane@doe.com'],
       });
       const add = document.querySelector('.first .add-email');
-      add.onclick = function () {
-        form.randomEmail();
-      };
       const count = document.querySelector('.first .get-count');
-      count.onclick = function () {
-        form.emailsCount();
+      add.onclick = function () {
+        formEmail.randomEmail();
       };
+      count.onclick = function () {
+        formEmail.emailsCount();
+      };
+
+      const shareId = document.getElementById('share');
+      const shareComp = shareForm.setup(shareId);
+      const addShare = document.querySelector('.second .add-email');
+      const countShare = document.querySelector('.second .get-count');
+
+      addShare.onclick = function () {
+        shareComp.randomEmail();
+      };
+      countShare.onclick = function () {
+        shareComp.emailsCount();
+      };
+
+      shareForm.setup(document.getElementById('standalone'));
     </script>
   </body>
 </html>
