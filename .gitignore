@@ -1,9 +1,7 @@
 # compiled output
-/dist/
 /tmp/
 
 # dependencies
-/dist/
 /node_modules/
 
 # misc
@@ -12,3 +10,4 @@
 /.sass-cache
 /libpeerconnection.log
 /npm-debug.log*
+/.DS_Store
