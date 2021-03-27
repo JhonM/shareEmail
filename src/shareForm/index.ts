@@ -1,14 +1,20 @@
+import { Props } from '../types';
 import { emailLabel } from '../components/email-label';
 import { emailInput } from '../components/email-input';
 
 export default class shareForm {
-  constructor(selector, props) {
+  selector: HTMLElement;
+  list: HTMLElement;
+  props: Props;
+  emails: string[];
+
+  constructor(selector: HTMLElement, props: Props) {
     this.selector = selector;
     this.list = document.createElement('span');
     this.props = props;
     this.emails = props?.emails || [];
 
-    this.buildList(this.emails);
+    this.buildList();
   }
 
   buildList() {
@@ -25,12 +31,12 @@ export default class shareForm {
     this.selector.appendChild(
       emailInput({
         placeholder: 'add more people...',
-        action: (e) => this.addEmail(e),
+        action: (e: string) => this.addEmail(e),
       })
     );
   }
 
-  addEmail(email) {
+  addEmail(email: string) {
     this.appendChildEmail(email);
   }
 
@@ -51,11 +57,11 @@ export default class shareForm {
     this.appendChildEmail(randomEmail);
   }
 
-  removeEmail(email) {
+  removeEmail(email: HTMLElement) {
     this.list.removeChild(email);
   }
 
-  appendChildEmail(email) {
+  appendChildEmail(email: string) {
     const template = emailLabel({
       email,
       action: () => this.removeEmail(template),

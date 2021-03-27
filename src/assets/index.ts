@@ -1,3 +1,3 @@
-import svg from './remove.svg';
+// import svg from './remove.svg';
 
-export { svg as Remove };
+// export { svg as Remove };
