@@ -12,9 +12,12 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
+      file: `dist/${pkg.name}.min.js`,
       format: 'umd',
-      name: 'ShareForm',
+      name: 'shareForm',
+      esModule: false,
+      exports: 'named',
+      sourcemap: true,
     },
     {
       file: pkg.module,

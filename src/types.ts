@@ -12,18 +12,6 @@ export interface InputType {
   action: (e: string) => void
 } 
 
-export interface KeyboardEvent {
-  code: string;
-}
-
-export interface FocusEvent {
-  target: string;
-}
-
 export interface ClipboardEvent {
-  clipboardData: any;
-}
-
-export interface Window {
   clipboardData: any;
 }

@@ -14,7 +14,7 @@ const onKeyDown = (e: string, action: (e: string) => void) => {
 };
 
 const onPaste = (e:ClipboardEvent, action: (e: string) => void) => {
-  const paste = (e.clipboardData || window.clipboardData).getData('text');
+  const paste = (e.clipboardData || (<any>window).clipboardData).getData('text');
   const pasteArr = paste.split(',');
   pasteArr.forEach((email: string) => action(email));
 };
@@ -49,7 +49,7 @@ export default (props: InputType) => {
       onKeyDown((<HTMLInputElement>e.target).value, props.action);
 
       (<HTMLInputElement>e.target).value = '';
-      input.removeEventListener('blur', onBlur);
+      // input.removeEventListener('blur', onBlur);
     }
   });
 
