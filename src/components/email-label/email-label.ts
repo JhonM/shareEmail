@@ -9,8 +9,8 @@ const validateEmail = (email: string) => {
 const labelTemplate = (email: string) =>
   `
     <label data-share-form="share-box-email-label">
-      <span>${email}<span>
-      <span data-share-form="share-box-email-close" tabindex="0"><img src=X></span>
+      <span  data-share-form="share-box-email">${email}<span>
+      <span data-share-form="share-box-email-close" tabindex="0">x</span>
     </label>
   `;
 
