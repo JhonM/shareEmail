@@ -1,3 +1,4 @@
+import './css/index.scss'
 import ShareForm from "./shareForm";
 import { Props } from './types'
 

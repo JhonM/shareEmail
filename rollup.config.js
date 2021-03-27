@@ -3,6 +3,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
+import postcss from 'rollup-plugin-postcss'
+import postcssUrl from 'postcss-url'
 
 import pkg from './package.json';
 
@@ -36,5 +38,17 @@ export default {
     resolve(),
     commonjs(),
     terser(),
+    postcss({
+      extract: true,
+      minimize: true,
+       modules: {
+        generateScopedName: "[hash:base64:5]"
+      },
+      plugins: [
+        postcssUrl({
+          url: "inline"
+        })
+      ]
+    })
   ],
 };
