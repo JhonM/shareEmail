@@ -9,7 +9,7 @@ module.exports = {
   rules: {},
   overrides: [
     {
-      files: ['src/*/*'],
+      files: ['src/*/*', 'tests/*'],
       rules: {
         'max-lines': 'off',
         'max-nested-callbacks': 'off',
