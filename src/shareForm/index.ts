@@ -8,6 +8,10 @@ export default class shareForm {
   props: Props;
   emails: string[];
 
+  /**
+   * @param {HTMLElement} selector -  the selector to bind this class to
+   * @param {Array} (optional) props -  an array with object
+   */
   constructor(selector: HTMLElement, props: Props) {
     this.selector = selector;
     this.list = document.createElement('span');
@@ -17,6 +21,10 @@ export default class shareForm {
     this.buildList();
   }
 
+  /**
+   * Builds list based on emails array and appends this to this.selector
+   * Appends emailInput component this.selector
+   */
   buildList() {
     this.emails.forEach((email) => {
       const template = emailLabel({
@@ -36,10 +44,16 @@ export default class shareForm {
     );
   }
 
+  /**
+   * @param {String} email - adds an email to appendChildEmail
+   */
   addEmail(email: string) {
     this.appendChildEmail(email);
   }
 
+  /**
+   * Adds a random email to appendChildEmail
+   */
   randomEmail() {
     const emailArray = [
       'push@push.it',
@@ -57,10 +71,16 @@ export default class shareForm {
     this.appendChildEmail(randomEmail);
   }
 
+  /**
+   * @param {String} email - removes an email from this.list
+   */
   removeEmail(email: HTMLElement) {
     this.list.removeChild(email);
   }
 
+  /**
+   * @param {String} email - adds an email to emailLabel components and append this to this.list
+   */
   appendChildEmail(email: string) {
     const template = emailLabel({
       email,
@@ -69,6 +89,9 @@ export default class shareForm {
     this.list.appendChild(template);
   }
 
+  /**
+   * Gets length from this.list
+   */
   emailsCount() {
     const currentLength = this.list.querySelectorAll(
       '[data-share-form="share-box-email-label-container"]'
