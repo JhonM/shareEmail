@@ -3,22 +3,29 @@ import { fullTrim } from './helpers/string-helpers';
 
 describe('Email label component', () => {
   test('should render valid email', () => {
-    const email = emailLabel({ email: 'jane@doe.com', action: () => { return true } });
-    const userName = email.querySelector('[data-share-form="share-box-email"]')
+    const email = emailLabel({
+      email: 'jane@doe.com',
+      action: () => {
+        return true;
+      },
+    });
+    const userName = email.querySelector('[data-share-form="share-box-email"]');
 
     expect(email.classList.contains('valid')).toBe(true);
     expect(fullTrim(userName?.textContent)).toBe('jane@doe.com x');
   });
 
   test('should call close action', () => {
-    const action  = () => {
+    const action = () => {
       return true;
-    }
+    };
     const mockCallBack = jest.fn(action);
-    const email = emailLabel({ email: 'jane@doe.com', action: mockCallBack});
-    const closeButton: HTMLElement = email.querySelector('[data-share-form="share-box-email-close"]') as HTMLElement;
+    const email = emailLabel({ email: 'jane@doe.com', action: mockCallBack });
+    const closeButton: HTMLElement = email.querySelector(
+      '[data-share-form="share-box-email-close"]',
+    ) as HTMLElement;
 
-    closeButton.click()
+    closeButton.click();
     expect(mockCallBack).toBeCalled();
-  })
-})
+  });
+});
