@@ -9,8 +9,9 @@ describe('Email label component', () => {
         return true;
       },
     });
-    const userName = email.querySelector('[data-share-form="share-box-email"]')
-      .textContent;
+    const userName: string = (<HTMLElement>(
+      email.querySelector('[data-share-form="share-box-email"]')
+    )).textContent!;
 
     expect(email.classList.contains('valid')).toBe(true);
     expect(fullTrim(userName)).toBe('jane@doe.com x');

@@ -11,6 +11,6 @@
     "strict": true,
     "declaration": true
   },
-  "include": ["src", "typeScript"],
+  "include": ["src", "typeScript", "tests"],
   "exclude": ["node_modules"]
 }
