@@ -9,10 +9,11 @@ describe('Email label component', () => {
         return true;
       },
     });
-    const userName = email.querySelector('[data-share-form="share-box-email"]');
+    const userName = email.querySelector('[data-share-form="share-box-email"]')
+      .textContent;
 
     expect(email.classList.contains('valid')).toBe(true);
-    expect(fullTrim(userName?.textContent)).toBe('jane@doe.com x');
+    expect(fullTrim(userName)).toBe('jane@doe.com x');
   });
 
   test('should call close action', () => {
