@@ -1,4 +1,3 @@
-// import { Remove } from '../../../dist/assets/bundle';
 import { EmailType } from '../../types'
 
 /**

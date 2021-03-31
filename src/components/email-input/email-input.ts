@@ -30,7 +30,7 @@ const onKeyDown = (e: string, action: (e: string) => void) => {
  */
 const onPaste = (e:ClipboardEvent, action: (e: string) => void) => {
   const paste = (e.clipboardData || (<any>window).clipboardData).getData('text');
-  const pasteArr = paste.split(',');
+  const pasteArr = paste.split(/[\s,]+/);
   pasteArr.forEach((email: string) => action(email));
 };
 
