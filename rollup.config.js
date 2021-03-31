@@ -5,6 +5,7 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss'
 import postcssUrl from 'postcss-url'
+import dev from 'rollup-plugin-dev'
 
 import pkg from './package.json';
 
@@ -49,6 +50,7 @@ export default {
           url: "inline"
         })
       ]
-    })
+    }),
+    dev(),
   ],
 };
