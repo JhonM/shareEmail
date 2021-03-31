@@ -1,8 +1,9 @@
-import { EmailType } from '../../types'
+import { EmailType } from '../../types';
 
 /**
  * Validates email
- * @param {String} email - email value
+ *
+ * @param {string} email - email value
  */
 const validateEmail = (email: string) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -10,7 +11,7 @@ const validateEmail = (email: string) => {
 };
 
 /**
- * @param {String} email - email value
+ * @param {string} email - email value
  */
 const labelTemplate = (email: string) =>
   `
@@ -32,9 +33,10 @@ export default (props: EmailType) => {
   template.innerHTML = labelTemplate(props.email);
 
   /**
-    * remove email label on click
+   * remove email label on click
    */
-  template?.querySelector('[data-share-form="share-box-email-close"]')
+  template
+    ?.querySelector('[data-share-form="share-box-email-close"]')
     ?.addEventListener('click', () => {
       props.action();
     });

@@ -1,7 +1,7 @@
-import {ClipboardEvent, InputType } from '../../types';
+import { ClipboardEvent, InputType } from '../../types';
 
 /**
- * @param {String} placeholder - placeholder value
+ * @param {string} placeholder - placeholder value
  */
 const labelTemplate = (placeholder: string) =>
   `
@@ -9,16 +9,16 @@ const labelTemplate = (placeholder: string) =>
   `;
 
 /**
- * @param {String} e - blur value
- * @param {function} action - callback function
+ * @param {string} e - blur value
+ * @param {Function} action - callback function
  */
 const onBlur = (e: string, action: (e: string) => void) => {
   fireAction(e, action);
 };
 
 /**
- * @param {String} e - keydown value
- * @param {function} action - callback function
+ * @param {string} e - keydown value
+ * @param {Function} action - callback function
  */
 const onKeyDown = (e: string, action: (e: string) => void) => {
   fireAction(e, action);
@@ -26,19 +26,22 @@ const onKeyDown = (e: string, action: (e: string) => void) => {
 
 /**
  * @param {Event} ClipboardEvent - paste event
- * @param {function} action - a callback function
+ * @param e
+ * @param {Function} action - a callback function
  */
-const onPaste = (e:ClipboardEvent, action: (e: string) => void) => {
-  const paste = (e.clipboardData || (<any>window).clipboardData).getData('text');
+const onPaste = (e: ClipboardEvent, action: (e: string) => void) => {
+  const paste = (e.clipboardData || (<any>window).clipboardData).getData(
+    'text',
+  );
   const pasteArr = paste.split(/[\s,]+/);
   pasteArr.forEach((email: string) => action(email));
 };
 
 /**
- * @param {String} e - passed in value
- * @param {function} action - callback function
+ * @param {string} e - passed in value
+ * @param {Function} action - callback function
  */
-const fireAction = (e:string, action: (e: string) => void) => {
+const fireAction = (e: string, action: (e: string) => void) => {
   const newEmail = e;
   if (newEmail === '') return;
   action(newEmail);
@@ -61,7 +64,7 @@ export default (props: InputType) => {
   input?.addEventListener('blur', (e) => {
     onBlur((<HTMLInputElement>e.target).value, props.action);
 
-      (<HTMLInputElement>e.target).value = '';
+    (<HTMLInputElement>e.target).value = '';
   });
 
   /**

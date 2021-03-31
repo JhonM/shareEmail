@@ -11,6 +11,7 @@ export default class shareForm {
   /**
    * @param {HTMLElement} selector -  the selector to bind this class to
    * @param {Array} (optional) props -  an array with object
+   * @param props
    */
   constructor(selector: HTMLElement, props: Props) {
     this.selector = selector;
@@ -40,12 +41,12 @@ export default class shareForm {
       emailInput({
         placeholder: 'add more people...',
         action: (e: string) => this.addEmail(e),
-      })
+      }),
     );
   }
 
   /**
-   * @param {String} email - adds an email to appendChildEmail
+   * @param {string} email - adds an email to appendChildEmail
    */
   addEmail(email: string) {
     this.appendChildEmail(email);
@@ -72,14 +73,14 @@ export default class shareForm {
   }
 
   /**
-   * @param {String} email - removes an email from this.list
+   * @param {string} email - removes an email from this.list
    */
   removeEmail(email: HTMLElement) {
     this.list.removeChild(email);
   }
 
   /**
-   * @param {String} email - adds an email to emailLabel components and append this to this.list
+   * @param {string} email - adds an email to emailLabel components and append this to this.list
    */
   appendChildEmail(email: string) {
     const template = emailLabel({
@@ -94,7 +95,7 @@ export default class shareForm {
    */
   emailsCount() {
     const currentLength = this.list.querySelectorAll(
-      '[data-share-form="share-box-email-label-container"]'
+      '[data-share-form="share-box-email-label-container"]',
     ).length;
     alert(`Current email count is: ${currentLength}`);
   }
