@@ -3,9 +3,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
-import postcss from 'rollup-plugin-postcss'
-import postcssUrl from 'postcss-url'
-import dev from 'rollup-plugin-dev'
+import postcss from 'rollup-plugin-postcss';
+import postcssUrl from 'postcss-url';
+import dev from 'rollup-plugin-dev';
 
 import pkg from './package.json';
 
@@ -15,7 +15,7 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: `dist/${pkg.name}.min.js`,
+      file: `docs/${pkg.name}.min.js`,
       format: 'umd',
       name: 'shareForm',
       esModule: false,
@@ -42,14 +42,14 @@ export default {
     postcss({
       extract: true,
       minimize: true,
-       modules: {
-        generateScopedName: "[hash:base64:5]"
+      modules: {
+        generateScopedName: '[hash:base64:5]',
       },
       plugins: [
         postcssUrl({
-          url: "inline"
-        })
-      ]
+          url: 'inline',
+        }),
+      ],
     }),
     dev(),
   ],
