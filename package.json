@@ -2,11 +2,11 @@
   "name": "multiple-email-form",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "module": "./dist/index.es.js",
-  "types": "./dist/index.d.ts",
+  "main": "./docs/index.js",
+  "module": "./docs/index.es.js",
+  "types": "./docs/index.d.ts",
   "files": [
-    "dist"
+    "docs"
   ],
   "scripts": {
     "prettier": "prettier '**/*.{js,ts}' --ignore-path ./.prettierignore",
@@ -14,7 +14,7 @@
     "types": "tsc --noEmit",
     "finish": "npm run lint && npm run types",
     "build": "npm run build:clean && npm run build:lib",
-    "build:clean": "rimraf dist",
+    "build:clean": "rimraf docs",
     "build:dev": "rollup -wc",
     "build:lib": "rollup -c",
     "test": "jest --coverage",
